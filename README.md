@@ -23,4 +23,3 @@ This app is an online store application that allows users to sign up, log in, br
 - Run the App:
   `npm start`
 - Run tests: `npm test`
-
