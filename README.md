@@ -12,8 +12,10 @@ This app is an online store application that allows users to sign up, log in, br
 - Products Page: Browse products with product name.
 - Product Page: See more info, descriptions, and ratings for each product
 
-### Installation:
+### Test stack:
+- `React with typescript`
 
+### Installation:
 - Install Vs Code: https://code.visualstudio.com/download
 - Clone the repo: git clone https://github.com/GoguAnjali718/ecommerce-platform.git
 - `npm install`
@@ -23,3 +25,4 @@ This app is an online store application that allows users to sign up, log in, br
 - Run the App:
   `npm start`
 - Run tests: `npm test`
+
