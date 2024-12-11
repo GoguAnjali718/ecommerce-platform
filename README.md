@@ -1,4 +1,4 @@
-## ProjectName: QuickCart(eCommerce-Platform)
+## ProjectName: Myntra(eCommerce-Platform)
 
 ### Discription:
 
