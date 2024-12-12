@@ -13,16 +13,33 @@ This app is an online store application that allows users to sign up, log in, br
 - Product Page: See more info, descriptions, and ratings for each product
 
 ### Test stack:
-- `React with typescript`
+- React with typescript
 
 ### Installation:
 - Install Vs Code: https://code.visualstudio.com/download
-- Clone the repo: git clone https://github.com/GoguAnjali718/ecommerce-platform.git
-- `npm install`
+- Clone the repo: 
+```shell
+git clone https://github.com/GoguAnjali718/ecommerce-platform.git
+```
 
+- After install the node modules using the below command :
+```shell
+- npm install
+```
 ### Usage:
 
 - Run the App:
-  `npm start`
-- Run tests: `npm test`
+```shell
+  npm start
+  ```
+- Run tests: 
+```shell 
+npm test
+ ```
+
+#### Login Page:
+
+- Implement login functionality where users can log in with their username and password.
+
+<img src="/Users/anjaligogu/Documents/CODE/myntra/src/assets/login.png" alt="Login Page Screenshot" width="200" height="200">
 
