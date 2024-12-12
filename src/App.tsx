@@ -1,13 +1,17 @@
 import React from "react";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import {LoginPage} from "./pages/loginPage";
+import { LoginPage } from "./components/login/LoginPage";
+import { RegistrationPage } from "./components/register/RegistrationPage";
 
 function App() {
   return (
-    <div data-testid="loginComponent">
-      <LoginPage />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/register" element={<RegistrationPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
