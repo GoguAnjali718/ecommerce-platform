@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "/Users/anjaligogu/Documents/CODE/myntra/src/components/login/Styles.css";
 import { useNavigate } from "react-router-dom";
 import { TextField, Box, Button } from "@mui/material";
@@ -6,11 +6,14 @@ import { TextField, Box, Button } from "@mui/material";
 export function LoginPage() {
   const navigate = useNavigate();
 
-  const goToRegister = () => {
+  const navigateToRegistrtionPage = () => {
     navigate("/register");
     console.log("login");
   };
-
+  const navigateToProductPage = () => {
+    navigate("/products");
+  };
+  
   const handleSubmit = (e: React.FormEvent) => {
 
     const formData = new FormData(e.currentTarget as HTMLFormElement);
@@ -51,6 +54,7 @@ export function LoginPage() {
         />
 
         <Button
+        onClick={navigateToProductPage}
           type="submit"
           variant="contained"
           color="primary"
@@ -66,7 +70,7 @@ export function LoginPage() {
           <p>Don't have an account?</p>
           <Button
             className="register-button"
-            onClick={goToRegister}
+            onClick={navigateToRegistrtionPage}
             color="secondary"
             variant="text"
           >
