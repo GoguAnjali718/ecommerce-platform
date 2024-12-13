@@ -13,22 +13,6 @@ it("should check user input fields", () => {
   expect(screen.getByPlaceholderText("Enter password")).toBeInTheDocument();
 });
 
-// it("should create formData on form submit", () => {
-//     render(
-//  <MemoryRouter><RegistrationPage/></MemoryRouter>
-// );
-//     fireEvent.change(screen.getByPlaceholderText('Enter username'), { target: { value: 'Anji' } });
-//     fireEvent.change(screen.getByPlaceholderText('Enter password'), { target: { value: 'iam' } });
-//     fireEvent.change(screen.getByPlaceholderText('Confirm password'), { target: { value: 'iam' } });
-
-//     const form = document.querySelector('form');
-//     fireEvent.submit(form)
-//      const formData = new FormData(form);
-//      expect(formData.get('username')).toBe('Anji');
-//       expect(formData.get('password')).toBe('iam');
-//       expect(formData.get('confirmPassword')).toBe('iam');
-// });
-
 it("should it naviagete to login page when login button is pressed", () => {
   render(
     <MemoryRouter>
@@ -49,4 +33,44 @@ it("should it navigate to to product page when submit button is clicked", () => 
   const submitButton = screen.getByText(/Submit/i);
   fireEvent.click(submitButton);
   expect(window.location.pathname).toBe("/products");
+});
+
+it("should show alert when passwords do not match", () => {
+  render(
+    <MemoryRouter>
+      <RegistrationPage />
+    </MemoryRouter>
+  );
+  fireEvent.change(screen.getByPlaceholderText("Enter username"), {
+    target: { value: "Anji" },
+  });
+  fireEvent.change(screen.getByPlaceholderText("Enter password"), {
+    target: { value: "iam" },
+  });
+  fireEvent.change(screen.getByPlaceholderText("Confirm password"), {
+    target: { value: "im" },
+  });
+  const submitButton = screen.getByText(/Submit/i);
+  fireEvent.click(submitButton);
+  expect(window.location.pathname).not.toBe("/products");
+});
+
+it("should show alert all fields are empty", () => {
+  render(
+    <MemoryRouter>
+      <RegistrationPage />
+    </MemoryRouter>
+  );
+  fireEvent.change(screen.getByPlaceholderText("Enter username"), {
+    target: { value: " " },
+  });
+  fireEvent.change(screen.getByPlaceholderText("Enter password"), {
+    target: { value: " " },
+  });
+  fireEvent.change(screen.getByPlaceholderText("Confirm password"), {
+    target: { value: " " },
+  });
+  const submitButton = screen.getByText(/Submit/i);
+  fireEvent.click(submitButton);
+  expect(window.alert).toHaveBeenCalledWith("All fields are required");
 });
