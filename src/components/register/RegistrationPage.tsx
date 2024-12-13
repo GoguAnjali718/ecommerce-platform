@@ -6,16 +6,26 @@ import { useNavigate } from "react-router-dom";
 export function RegistrationPage() {
   const navigate = useNavigate();
 
+  const navigateToLoginPage = () => {
+    navigate("/");
+  };
   const handleSubmit = (e: React.FormEvent) => {
     const formData = new FormData(e.currentTarget as HTMLFormElement);
-  };
+    const username = formData.get("username") as string;
+    const password = formData.get("password") as string;
+    const confirmPassword = formData.get("confirmPassword") as string;
+    if (!username || !password || !confirmPassword) {
+      alert("All fields are required");
+      return;
+    }
 
-  const navigateToProductPage = () => {
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
     navigate("/products");
   };
-  const navigateToLoginPage =()=>{
-    navigate('/')
-  }
+
   return (
     <div className="Container">
       <Box
@@ -59,7 +69,6 @@ export function RegistrationPage() {
         />
 
         <Button
-          onClick={navigateToProductPage}
           type="submit"
           variant="contained"
           color="primary"
