@@ -10,16 +10,16 @@ export function LoginPage() {
     navigate("/register");
     console.log("login");
   };
-  const navigateToProductPage = () => {
-    navigate("/products");
-  };
-  
+
   const handleSubmit = (e: React.FormEvent) => {
-
     const formData = new FormData(e.currentTarget as HTMLFormElement);
-    // for(let [key, value] of formData.entries()){
-
-    // }
+    const username = formData.get("username") as string;
+    const password = formData.get("password") as string;
+    if (!username || !password) {
+      alert("All fields are required");
+      return;
+    }
+    navigate("/products");
   };
 
   return (
@@ -54,7 +54,6 @@ export function LoginPage() {
         />
 
         <Button
-        onClick={navigateToProductPage}
           type="submit"
           variant="contained"
           color="primary"
