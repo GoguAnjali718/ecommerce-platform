@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { LoginPage } from "./LoginPage";
 import { MemoryRouter } from "react-router-dom";
 
@@ -15,8 +15,6 @@ describe("render the login component", () => {
     expect(usernameInput).toBeInTheDocument();
     expect(passwordInput).toBeInTheDocument();
   });
-
- 
 });
 
 it("should it navigate to registrtion page Register button is clicked", () => {
@@ -33,8 +31,8 @@ it("should it navigate to registrtion page Register button is clicked", () => {
 it("should create formData on form submit", () => {
   const { getByLabelText, getByRole } = render(
     <MemoryRouter>
-    <LoginPage />
-  </MemoryRouter>
+      <LoginPage />
+    </MemoryRouter>
   );
   const usernameInput = getByLabelText(/username/i);
   const passwordInput = getByLabelText(/password/i);
@@ -43,4 +41,15 @@ it("should create formData on form submit", () => {
   fireEvent.change(passwordInput, { target: { value: "iam" } });
   fireEvent.submit(submitButton);
   // expect(screen.queryByText("Form submitted with:")).toBeInTheDocument();
+});
+
+it("should it navigate to to product page when submit button is clicked", () => {
+  render(
+    <MemoryRouter>
+      <LoginPage />
+    </MemoryRouter>
+  );
+  const submitButton = screen.getByText(/Submit/i);
+  fireEvent.click(submitButton);
+  expect(window.location.pathname).toBe("/products");
 });
