@@ -43,3 +43,5 @@ npm test
 
 <img src="/Users/anjaligogu/Documents/CODE/myntra/src/assets/login.png" alt="Login Page Screenshot" width="200" height="200">
 
+#### Registrtion page:
+- This page lets you create a new account by entering a username and password. After you `submit` the form, you'll be taken to the product page. If you already have an account, you can log in by clicking the `Login` button.

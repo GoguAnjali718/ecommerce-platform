@@ -1,22 +1,26 @@
 import React from "react";
 import "/Users/anjaligogu/Documents/CODE/myntra/src/components/login/Styles.css";
+import { Box, TextField, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { TextField, Box, Button } from "@mui/material";
 
-export function LoginPage() {
+export function RegistrationPage() {
   const navigate = useNavigate();
 
-  const navigateToRegistrtionPage = () => {
-    navigate("/register");
-    console.log("login");
+  const navigateToLoginPage = () => {
+    navigate("/");
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     const username = formData.get("username") as string;
     const password = formData.get("password") as string;
-    if (!username || !password) {
+    const confirmPassword = formData.get("confirmPassword") as string;
+    if (!username || !password || !confirmPassword) {
       alert("All fields are required");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
       return;
     }
     navigate("/products");
@@ -52,6 +56,17 @@ export function LoginPage() {
           margin="normal"
           placeholder="Enter password"
         />
+        <TextField
+          required
+          id="confirmPassword"
+          label="Confirm Password"
+          name="confirmPassword"
+          type="password"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          placeholder="Confirm password"
+        />
 
         <Button
           type="submit"
@@ -66,14 +81,14 @@ export function LoginPage() {
           className="register-group"
           style={{ marginTop: "16px", textAlign: "center" }}
         >
-          <p>Don't have an account?</p>
+          <p>Already have an account?</p>
           <Button
             className="register-button"
-            onClick={navigateToRegistrtionPage}
+            onClick={navigateToLoginPage}
             color="secondary"
             variant="text"
           >
-            Register
+            Login
           </Button>
         </div>
       </Box>
