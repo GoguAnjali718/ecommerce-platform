@@ -74,3 +74,4 @@ it("should show alert all fields are empty", () => {
   fireEvent.click(submitButton);
   expect(window.alert).toHaveBeenCalledWith("All fields are required");
 });
+

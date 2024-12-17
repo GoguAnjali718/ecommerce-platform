@@ -1,25 +1,34 @@
 import React from "react";
 import "/Users/anjaligogu/Documents/CODE/myntra/src/components/login/Styles.css";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../../contexts/UserAuthenticationContext";
 import { TextField, Box, Button } from "@mui/material";
 
 export function LoginPage() {
   const navigate = useNavigate();
+  const { userData } = useUserContext();
 
-  const navigateToRegistrtionPage = () => {
+  const navigateToRegistrationPage = () => {
     navigate("/register");
-    console.log("login");
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     const username = formData.get("username") as string;
     const password = formData.get("password") as string;
-    if (!username || !password) {
-      alert("All fields are required");
-      return;
+    if (username === "" || password === "") {
+      alert("Both fields are required");
+    } else {
+      const user = userData.find(
+        (user) => user.username === username && user.password === password
+      );
+      if (user) {
+        navigate("/products");
+        alert("User login Successful");
+      } else {
+        alert("No user found. Please register.");
+      }
     }
-    navigate("/products");
   };
 
   return (
@@ -29,6 +38,7 @@ export function LoginPage() {
         onSubmit={handleSubmit}
         noValidate
         autoComplete="off"
+        className="login-form"
       >
         <TextField
           required
@@ -69,7 +79,7 @@ export function LoginPage() {
           <p>Don't have an account?</p>
           <Button
             className="register-button"
-            onClick={navigateToRegistrtionPage}
+            onClick={navigateToRegistrationPage}
             color="secondary"
             variant="text"
           >
