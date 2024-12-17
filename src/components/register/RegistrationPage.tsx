@@ -9,30 +9,48 @@ export function RegistrationPage() {
   const navigateToLoginPage = () => {
     navigate("/");
   };
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     const username = formData.get("username") as string;
     const password = formData.get("password") as string;
     const confirmPassword = formData.get("confirmPassword") as string;
-    if (!username || !password || !confirmPassword) {
-      alert("All fields are required");
-      return;
-    }
-
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
-      return;
+      alert("Passwords do not match!");
     }
-    navigate("/products");
+    const userData = {
+      username,
+      password,
+      confirmPassword,
+    };
+    try {
+      const response = await fetch("http://localhost:3000/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      });
+
+      if (response.status === 201 || response.ok) {
+        alert("Registration successful!");
+        navigate("/products");
+      } else {
+        alert("Something went wrong");
+      }
+    } catch (error) {
+      alert("error, posting the Data");
+    }
   };
 
   return (
     <div className="Container">
+      <div className="paragraph">
+        <p></p>
+      </div>
       <Box
         component="form"
         onSubmit={handleSubmit}
         noValidate
         autoComplete="off"
+        className="login-form"
       >
         <TextField
           required
